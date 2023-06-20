@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [input, setInput] = useState("");
+
+  const handleChange = (event) => {
+    setInput(event.target.value);
+  };
+
+  const isPalindrome = (str) => {
+    let firstString = str.toLowerCase().replace(/[^a-zа-я0-9]+/g, "");
+    let reverseString = firstString.split("").reverse().join("");
+    return firstString === reverseString;
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type="text" value={input} onChange={handleChange} />
+      <p>{isPalindrome(input) ? "True" : "False"}</p>
     </div>
   );
 }
